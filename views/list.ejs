@@ -1,0 +1,141 @@
+
+    <%- include("header") -%>
+
+       <li class="nav-item dropdown px-2">
+         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Custom List
+         </a>
+         <ul class="dropdown-menu">
+         <% customList.forEach(list => { %>
+            <li><a class="dropdown-item" href="/<%= list.name %>"><%= list.name %></a></li>
+         <% }) %>   
+           <li><hr class="dropdown-divider"></li>
+           <li><a class="dropdown-item " data-bs-toggle="modal" data-bs-target="#deleteModal"
+             href="#">Delete custom list</a></li>
+         </ul>
+       </li>
+        
+     </ul>
+    </div>
+  </div>
+ </nav>              
+</head>
+      
+    <body>
+        <%- include("svg") -%>
+        
+        <div id="successAlert"></div>        
+        
+        <div class="head">
+            <div id="icon"></div>
+            <div id="heading">
+                <h1> <%= listTitle %> </h1>   
+            </div>
+        </div>
+        
+        <div class="box">
+            <% newListItems.forEach(item => { %>
+            <form action="/delete" method="post">
+                <div class="item">
+                    <input type="checkbox" name="checkbox" value= "<%= item._id %>" 
+                    onchange="this.form.submit()">
+                    <p> <%= item.name %> </p>
+                </div>
+                <input type="hidden" name="listName" value= "<%= listTitle %>" >
+            </form>
+            <% }) %>    
+        
+            <form class="item" action="/" method="post">
+                <input type="text" name="newItem" placeholder="Add new item here" autocomplete="off">
+                <button type="submit" name="listName" value= "<%= listTitle %>" >+</button>
+            </form>
+            
+            <div id="warningAlert"></div>
+        </div>
+      
+              <!-- Modal 1 -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">List not found</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p><%= modalTitle %> does not exist, do you want to create a new one ?</p> 
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                <form action="/createlist" method="post">
+                  <button type="submit" name="title" value="<%= modalTitle %>" class="btn my-btn">Create</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+              <!-- Modal 2 -->
+        <form action="/deletelist" method="post">
+          <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Delete custom list</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="reset()"></button>
+                </div>
+                <div class="modal-body">
+                  <select class="form-select" id="select" name="listName" aria-label="Default select example">
+                    <option selected>Select list to delete</option>
+                    <% customList.forEach(list => { %>
+                      <option value="<%= list.name %>"><%= list.name %></option>
+                    <% }) %>  
+                  </select>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="reset()">Cancel</button>
+                  <button type="button" class="btn btn-danger disabled" data-bs-target="#deleteModal2" data-bs-toggle="modal"
+                    onclick="getOptionSelect()">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="deleteModal2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalToggleLabel2">Confirmation</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you want to delete <span class="listName"></span> ? </p> 
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-target="#deleteModal" data-bs-toggle="modal">Back to select list</button>
+                  <button type="submit" class="btn btn-danger">Confirm delete</button>
+                </div>
+              </div>
+            </div>
+          </div>  
+        </form>          
+      
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+      <%- include("modal") -%>
+      <%- include("alert") -%>
+    </body>
+        
+    <%- include("footer") -%>     
+
+      
+            
+        
+          
+      
+      
+      
+      
+       
+            
+        
+

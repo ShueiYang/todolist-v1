@@ -1,0 +1,28 @@
+
+<script>
+
+    const error = "<%- errorMessage %>"
+    const notification = "<%- notification %>"
+
+    const alert = (message, type, color, alertType, icon) => {
+        const alertPlaceholder = document.getElementById(`${alertType}`)
+        const wrapper = document.createElement('div')
+        wrapper.innerHTML = [
+            `<div class="alert alert-${type} d-flex alert-dismissible fade show" role="alert">`,
+            `<svg class="bi flex-shrink-0 me-2" fill=${color} role="img" aria-label="Warning:"><use xlink:href="#${icon}-fill"/></svg>`,
+            `   <div>${message}</div>`,
+            '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+            '</div>'
+        ].join('')
+
+        alertPlaceholder.append(wrapper)
+    }
+
+    if (error) {
+        alert("<%= errorMessage %>", "warning", "#664d03", "warningAlert", "exclamation-triangle"); 
+    } else if (notification) {
+        alert("<%- notification %>", "success", "#0f5132", "successAlert", "check-circle")
+    }
+
+</script>
+

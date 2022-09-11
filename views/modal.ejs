@@ -1,0 +1,30 @@
+
+<script>
+    const askingValidation = "<%- modalTitle %>"
+    const myModal = new bootstrap.Modal(document.querySelector("#exampleModal")); 
+    const select = document.querySelector("#select")
+    const button = document.querySelector(".btn-danger")
+        
+    if (askingValidation) {
+       myModal.show();
+    }
+
+    function getOptionSelect() {
+        const listSelect = select.value;
+        document.querySelector(".listName").textContent = listSelect;
+    }
+
+    function reset() {
+        select.selectedIndex = -1;
+    }
+
+    function stateHandle() {
+        if (select.value !== "Select list to delete") {
+            button.classList.remove("disabled")
+        } else {
+            button.classList.add("disabled") 
+        } 
+    }
+    select.addEventListener("change", stateHandle);
+
+</script>
