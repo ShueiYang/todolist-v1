@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require('mongoose');
 const { createCustomList, deleteCustomList } = require("./controllers/customizelist");
 const { getToDoList, getCustomList } = require("./controllers/getlist");
-const { addItem, deleteItem } = require("./controllers/updateList");
+const { addItem, deleteItem } = require("./controllers/updatelist");
 
 const app = express();
 const date = require("./date")
