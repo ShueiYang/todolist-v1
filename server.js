@@ -18,7 +18,7 @@ main().catch(err => console.log(err));
 async function main() {
     const { Schema } = mongoose;
     try {
-        await mongoose.connect('mongodb+srv://admin-shuei:tr228pq7e@cluster0.nmxfxgo.mongodb.net/todolistDB');
+        await mongoose.connect(`mongodb+srv://${process.env.DATABASE_AUTHENTIFICATION}`);
         
         const itemsSchema = new Schema({
             name: {
