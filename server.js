@@ -26,7 +26,7 @@ async function main() {
                 required: [true]
             }
         })
-
+        
         const listSchema = new Schema({
             name: String,
             items: [itemsSchema]
