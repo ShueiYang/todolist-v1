@@ -7,12 +7,17 @@ body {
 .navbar-brand {
   letter-spacing: 5px;
 }
+
 .navbar-nav {
   font-size: 1.25rem;
 }
 
 .navbar a:hover {
   color: #A683E3 !important;
+}
+
+.d-flex {
+  width: 370px;
 }
 
 h1 {
