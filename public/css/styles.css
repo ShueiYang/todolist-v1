@@ -17,7 +17,7 @@ body {
 }
 
 .d-flex {
-  width: 370px;
+  min-width: 370px;
 }
 
 h1 {
