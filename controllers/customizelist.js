@@ -17,6 +17,8 @@ const createCustomList = (req, res, List, defaultItems, notificationText) => {
     });
 }
 
+
+
 const deleteCustomList = (req, res, List, notificationText) => {
     const requestListName = req.body.listName
 
@@ -27,6 +29,7 @@ const deleteCustomList = (req, res, List, notificationText) => {
         }
     })
 }
+
 
 module.exports = {
     createCustomList,
