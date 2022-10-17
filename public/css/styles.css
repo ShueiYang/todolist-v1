@@ -107,8 +107,11 @@ form.item {
   background-color: #A683E3;
   color: #fff;
   font-size: 30px;
-  /* padding-bottom: 6px; */
   border-width: 0;
+}
+
+.item button:hover {
+  background-color: #9cd3e9;
 }
 
 input[type="text"] {
